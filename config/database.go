@@ -50,13 +50,13 @@ func Database() *sql.DB {
 	_, err = database.Exec(`CREATE DATABASE gotodo`)
 
 	if err != nil {
-		fmt.Println(err)
+		// fmt.Println(err)
 	}
 
 	_, err = database.Exec(`USE gotodo`)
 
 	if err != nil {
-		fmt.Println(err)
+		// fmt.Println(err)
 	}
 
 	_, err = database.Exec(`
@@ -71,7 +71,7 @@ func Database() *sql.DB {
 	`)
 
 	if err != nil {
-		fmt.Println(err)
+		// fmt.Println(err)
 	}
 
 	return database

@@ -1,87 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/css/bootstrap.min.css"
-          integrity="sha384-SI27wrMjH3ZZ89r4o+fGIJtnzkAnFs3E4qz9DIYioCQ5l9Rd/7UAa8DHcaL8jkWt" crossorigin="anonymous">
+        integrity="sha384-SI27wrMjH3ZZ89r4o+fGIJtnzkAnFs3E4qz9DIYioCQ5l9Rd/7UAa8DHcaL8jkWt" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- jQuery Modal -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+
     <title>Todo</title>
 </head>
 
 <body>
-    <div style="text-align: center;"><h1>Todos</h1></div>
+    <div style="text-align: center;">
+        <h1>Todos Task</h1>
+    </div>
 
-    <div class="container">
-        <div class="card">
-            <div class="card-header">Add a task</div>
-            <div class="card-body">
-                <form action="/add" method="post">
-                    <div class="form-group">
-                        <label for="Item">Item</label>
-                        <input type="text" class="form-control" name="item" placeholder="What do you want to do?">
-                        <small class="form-text text-muted">Enter what you want to procastinate 🙂</small>
-                    </div>
-                    <div class="form-group">
-                        <label for="Person">Person</label>
-                        <input type="text" class="form-control" name="person" placeholder="For Who?">
-                        <small class="form-text text-muted">Enter who you want to procastinate 🙂</small>
-                    </div>
-                    <div class="form-group">
-                        <label for="Date">Date</label>
-                        <input type="datetime-local" class="form-control" name="date" placeholder="When?">
-                        <small class="form-text text-muted">When the task should be do</small>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
+
+    <!-- Modal HTML embedded directly into document -->
+    <div id="ex1" class="modal">
+        <div class="container">
+            <div class="card">
+                <div class="card-header">Add a task</div>
+                <div class="card-body">
+                    <form action="/add" method="post">
+                        <div class="form-group">
+                            <label for="Item">Item</label>
+                            <input type="text" class="form-control" name="item" placeholder="What do you want to do?">
+                            <small class="form-text text-muted">Enter what you want to procastinate 🙂</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="Person">Person</label>
+                            <input type="text" class="form-control" name="person" placeholder="For Who?">
+                            <small class="form-text text-muted">Enter who you want to procastinate 🙂</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="Date">Date</label>
+                            <input type="datetime-local" class="form-control" name="date" placeholder="When?">
+                            <small class="form-text text-muted">When the task should be do</small>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <!-- <button type="submit" class="btn btn-primary">Close</button> -->
+                        <a href="#" class="btn btn-primary" rel="modal:close">Close</a>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
+
+    
+    
     &nbsp;
     &nbsp;
+    <div class="d-flex justify-content-center">
+        <!-- Link to open the modal -->
+        <p><a href="#ex1" class="btn btn-primary" rel="modal:open">Add New Task</a></p>
+        <!-- <button class="btn btn-primary" id="addNewTask">Add New Task</button> -->
+    </div>
+    <br>
     <div class="container">
         <div class="card">
             <div class="card-header">Tasks</div>
             <div class="card-body">
                 <table class="table table-borderless">
                     <thead>
-                    <tr>
-                        <th scope="col">Item</th>
-                        <th scope="col">Person</th>
-                        <th scope="col">Date</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Action</th>
-                    </tr>
+                        <tr>
+                            <th scope="col">Item</th>
+                            <th scope="col">Person</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Action</th>
+                        </tr>
                     </thead>
                     <tbody>
-                    {{range .Todos}}
+                        {{range .Todos}}
                         {{if .Completed}}
-                            <tr>
-                                <td><strike>{{.Item}}</strike></td>
-                                <td><strike>{{.Person}}</strike></td>
-                                <td><strike>{{.Date}}</strike></td>
-                                <td>Completed</td>
-                                <td>
-                                    <button class="btn btn-primary" disabled>Complete</button>
-                                    <button class="btn btn-warning" disabled>Update</button>
-                                    <button class="btn btn-danger" disabled>Delete</button>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td><strike>{{.Item}}</strike></td>
+                            <td><strike>{{.Person}}</strike></td>
+                            <td><strike>{{.Date}}</strike></td>
+                            <td>Completed</td>
+                            <td>
+                                <a href="/uncomplete/{{ .Id}}"><button class="btn btn-primary">UnComplete</button></a>
+                                <button class="btn btn-warning" disabled>Update</button>
+                                <button class="btn btn-danger" disabled>Delete</button>
+                            </td>
+                        </tr>
                         {{else}}
-                            <tr>
-                                <td>{{.Item}}</td>
-                                <td>{{.Person}}</td>
-                                <td>{{.Date}}</td>
-                                <td>Not Completed</td>
-                                <td>
-                                    <a href="/complete/{{ .Id}}"><button class="btn btn-primary">Complete</button></a>
-                                    <a href="/update/{{ .Id}}"><button class="btn btn-warning">Update</button></a>
-                                    <a href="/delete/{{ .Id}}"><button class="btn btn-danger">Delete</button></a>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td>{{.Item}}</td>
+                            <td>{{.Person}}</td>
+                            <td>{{.Date}}</td>
+                            <td>Not Completed</td>
+                            <td>
+                                <a href="/complete/{{ .Id}}"><button class="btn btn-primary">Complete</button></a>
+                                <a href="/update/{{ .Id}}"><button class="btn btn-warning">Update</button></a>
+                                <a href="/delete/{{ .Id}}"><button class="btn btn-danger">Delete</button></a>
+                            </td>
+                        </tr>
                         {{end}}
-                    {{end}}
+                        {{end}}
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
 </body>
+
 </html>
