@@ -15,6 +15,7 @@ var (
 	item      string
 	completed int
 	person    string
+	date      string
 	view      = template.Must(template.ParseFiles("./views/index.html"))
 	database  = config.Database()
 )
@@ -29,7 +30,7 @@ func Show(w http.ResponseWriter, r *http.Request) {
 	var todos []models.Todo
 
 	for statement.Next() {
-		err = statement.Scan(&id, &item, &completed, &person)
+		err = statement.Scan(&id, &item, &completed, &person, &date)
 
 		if err != nil {
 			fmt.Println(err)
@@ -40,6 +41,7 @@ func Show(w http.ResponseWriter, r *http.Request) {
 			Item:      item,
 			Completed: completed,
 			Person:    person,
+			Date:      date,
 		}
 
 		todos = append(todos, todo)
@@ -56,8 +58,9 @@ func Add(w http.ResponseWriter, r *http.Request) {
 
 	item := r.FormValue("item")
 	person := r.FormValue("person")
+	date := r.FormValue("date")
 
-	_, err := database.Exec(`INSERT INTO todos (item,person) VALUE (?,?)`, item, person)
+	_, err := database.Exec(`INSERT INTO todos (item,person,date) VALUE (?,?,?)`, item, person, date)
 
 	if err != nil {
 		fmt.Println(err)

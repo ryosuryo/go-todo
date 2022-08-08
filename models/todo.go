@@ -5,4 +5,5 @@ type Todo struct {
 	Item      string
 	Completed int
 	Person    string
+	Date      string
 }

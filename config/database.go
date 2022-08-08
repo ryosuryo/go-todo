@@ -65,6 +65,7 @@ func Database() *sql.DB {
 		    item TEXT NOT NULL,
 		    completed BOOLEAN DEFAULT FALSE,
 		    person TEXT NOT NULL,
+		    date TEXT NOT NULL,
 		    PRIMARY KEY (id)
 		);
 	`)
