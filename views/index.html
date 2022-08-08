@@ -14,39 +14,37 @@
 
 <body>
     <div style="text-align: center;">
-        <h1>Todos Task</h1>
+        <h1>Todos Task With Go Language</h1>
     </div>
 
 
     <!-- Modal HTML embedded directly into document -->
     <div id="ex1" class="modal">
-        <div class="container">
-            <div class="card">
-                <div class="card-header">Add a task</div>
-                <div class="card-body">
-                    <form action="/add" method="post">
-                        <div class="form-group">
-                            <label for="Item">Item</label>
-                            <input type="text" class="form-control" name="item" placeholder="What do you want to do?">
-                            <small class="form-text text-muted">Enter what you want to procastinate 🙂</small>
-                        </div>
-                        <div class="form-group">
-                            <label for="Person">Person</label>
-                            <input type="text" class="form-control" name="person" placeholder="For Who?">
-                            <small class="form-text text-muted">Enter who you want to procastinate 🙂</small>
-                        </div>
-                        <div class="form-group">
-                            <label for="Date">Date</label>
-                            <input type="datetime-local" class="form-control" name="date" placeholder="When?">
-                            <small class="form-text text-muted">When the task should be do</small>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                        <!-- <button type="submit" class="btn btn-primary">Close</button> -->
-                        <a href="#" class="btn btn-primary" rel="modal:close">Close</a>
-                    </form>
-                </div>
+        <!-- <div class="card-header">Add a task</div> -->
+        <form action="/add" method="post">
+            <div class="form-group">
+                <label for="Item">Item</label>
+                <input type="text" class="form-control" name="item" placeholder="What do you want to do?">
+                <small class="form-text text-muted">Enter what you want to procastinate 🙂</small>
             </div>
-        </div>
+            <div class="form-group">
+                <label for="Person">Person</label>
+                <input type="text" class="form-control" name="person" placeholder="For Who?">
+                <small class="form-text text-muted">Enter who you want to procastinate 🙂</small>
+            </div>
+            <div class="form-group">
+                <label for="Date">Date</label>
+                <input type="datetime-local" class="form-control" name="date" placeholder="When?">
+                <small class="form-text text-muted">When the task should be do</small>
+            </div>
+            <div class="d-flex justify-content-center">
+                <br>
+                <!-- <p><a href="#ex1" class="btn btn-primary" rel="modal:open">Add New Task</a></p> -->
+                <button type="submit" class="btn btn-primary">Submit</button>
+                &nbsp;|&nbsp;
+                <a href="#" class="btn btn-primary" rel="modal:close">Close</a>
+            </div>
+        </form>
     </div>
 
 
@@ -54,14 +52,16 @@
     &nbsp;
     &nbsp;
     <div class="d-flex justify-content-center">
-        <!-- Link to open the modal -->
         <p><a href="#ex1" class="btn btn-primary" rel="modal:open">Add New Task</a></p>
-        <!-- <button class="btn btn-primary" id="addNewTask">Add New Task</button> -->
     </div>
     <br>
     <div class="container">
         <div class="card">
-            <div class="card-header">Tasks</div>
+            <div class="card-header">
+                <div class="d-flex justify-content-center">
+                    <strong>Tasks</strong>
+                </div>
+            </div>
             <div class="card-body">
                 <table class="table table-borderless">
                     <thead>
@@ -107,5 +107,9 @@
         </div>
     </div>
 </body>
-
+<style>
+    .modal {
+        height: 55% !important;
+    }
+</style>
 </html>
