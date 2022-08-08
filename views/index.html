@@ -2,6 +2,8 @@
 <html lang="en">
 
 <head>
+    <link href='https://fonts.googleapis.com/css?family=Mulish' rel='stylesheet'>
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/css/bootstrap.min.css"
         integrity="sha384-SI27wrMjH3ZZ89r4o+fGIJtnzkAnFs3E4qz9DIYioCQ5l9Rd/7UAa8DHcaL8jkWt" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -10,10 +12,121 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 
     <title>Todo</title>
+    <style>
+        h1 {
+            font-size: 30px !important;
+            color: #fff !important;
+            text-transform: uppercase !important;
+            font-weight: 300 !important;
+            text-align: center !important;
+            margin-bottom: 15px !important;
+        }
+
+        table {
+            width: 100% !important;
+            table-layout: fixed !important;
+        }
+
+        .tbl-header {
+            background-color: rgba(255, 255, 255, 0.3) !important;
+        }
+
+        .tbl-content {
+            height: 300px !important;
+            overflow-x: auto !important;
+            margin-top: 0px !important;
+            border: 1px solid rgba(255, 255, 255, 0.3) !important;
+        }
+
+        th {
+            padding: 20px 15px !important;
+            text-align: left !important;
+            font-weight: 500 !important;
+            font-size: 12px !important;
+            color: #fff !important;
+            text-transform: uppercase !important;
+            font-weight: 800 !important;
+        }
+
+        td {
+            padding: 15px !important;
+            text-align: left !important;
+            vertical-align: middle !important;
+            font-weight: 300 !important;
+            font-size: 12px !important;
+            color: #fff !important;
+            border-bottom: solid 1px rgba(255, 255, 255, 0.1) !important;
+            font-weight: 500 !important;
+            font-size: 16px !important;
+        }
+
+
+        /* demo styles */
+
+        @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700) !important;
+
+        body {
+            background: -webkit-linear-gradient(left, #25c481, #25b7c4) !important;
+            background: linear-gradient(to right, #25c481, #25b7c4) !important;
+            /* font-family: 'Roboto', sans-serif !important; */
+            font-family: 'Mulish';font-size: 22px;
+
+        }
+
+        section {
+            margin: 50px !important;
+        }
+
+
+        /* follow me template */
+        .made-with-love {
+            margin-top: 40px !important;
+            padding: 10px !important;
+            clear: left !important;
+            text-align: center !important;
+            font-size: 10px !important;
+            font-family: arial !important;
+            color: #fff !important;
+        }
+
+        .made-with-love i {
+            font-style: normal !important;
+            color: #F50057 !important;
+            font-size: 14px !important;
+            position: relative !important;
+            top: 2px !important;
+        }
+
+        .made-with-love a {
+            color: #fff !important;
+            text-decoration: none !important;
+        }
+
+        .made-with-love a:hover {
+            text-decoration: underline !important;
+        }
+
+
+        /* for custom scrollbar for webkit browser*/
+
+        ::-webkit-scrollbar {
+            width: 6px !important;
+        }
+
+        ::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3) !important;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3) !important;
+        }
+    </style>
 </head>
 
 <body>
-    <div style="text-align: center;">
+    <div style="text-align: center; font-weight: 800 !important;">
+        <br>
+        <br>
         <h1>Todos Task With Go Language</h1>
     </div>
 
@@ -47,62 +160,61 @@
         </form>
     </div>
 
-
-
     &nbsp;
     &nbsp;
     <div class="d-flex justify-content-center">
-        <p><a href="#ex1" class="btn btn-primary" rel="modal:open">Add New Task</a></p>
+        <p><a href="#ex1" class="btn btn-outline-primary" rel="modal:open">Add New Task</a></p>
     </div>
-    <br>
     <div class="container">
-        <div class="card">
-            <div class="card-header">
-                <div class="d-flex justify-content-center">
-                    <strong>Tasks</strong>
-                </div>
-            </div>
+        <div class="">
             <div class="card-body">
-                <table class="table table-borderless">
-                    <thead>
-                        <tr>
-                            <th scope="col">Item</th>
-                            <th scope="col">Person</th>
-                            <th scope="col">Date</th>
-                            <th scope="col">Status</th>
-                            <th scope="col">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {{range .Todos}}
-                        {{if .Completed}}
-                        <tr>
-                            <td><strike>{{.Item}}</strike></td>
-                            <td><strike>{{.Person}}</strike></td>
-                            <td><strike>{{.Date}}</strike></td>
-                            <td>Completed</td>
-                            <td>
-                                <a href="/uncomplete/{{ .Id}}"><button class="btn btn-primary">UnComplete</button></a>
-                                <button class="btn btn-warning" disabled>Update</button>
-                                <button class="btn btn-danger" disabled>Delete</button>
-                            </td>
-                        </tr>
-                        {{else}}
-                        <tr>
-                            <td>{{.Item}}</td>
-                            <td>{{.Person}}</td>
-                            <td>{{.Date}}</td>
-                            <td>Not Completed</td>
-                            <td>
-                                <a href="/complete/{{ .Id}}"><button class="btn btn-primary">Complete</button></a>
-                                <a href="/update/{{ .Id}}"><button class="btn btn-warning">Update</button></a>
-                                <a href="/delete/{{ .Id}}"><button class="btn btn-danger">Delete</button></a>
-                            </td>
-                        </tr>
-                        {{end}}
-                        {{end}}
-                    </tbody>
-                </table>
+                <div class="tbl-header">
+                    <table cellpadding="0" cellspacing="0" border="0">
+                        <thead>
+                            <tr>
+                                <th scope="col">Item</th>
+                                <th class="text-center" scope="col">Person</th>
+                                <th class="text-center" scope="col">Date</th>
+                                <th class="text-center" scope="col">Status</th>
+                                <th class="text-center" scope="col" style="width: 350px;">Action</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                <div class="tbl-content">
+                    <table cellpadding="0" cellspacing="0" border="0">
+                        <tbody>
+                            {{range .Todos}}
+                            {{if .Completed}}
+                            <tr>
+                                <td><strike>{{.Item}}</strike></td>
+                                <td class="text-center"><strike>{{.Person}}</strike></td>
+                                <td class="text-center"><strike>{{.Date}}</strike></td>
+                                <td class="text-center">Completed</td>
+                                <td class="text-center" style="width: 350px;">
+                                    <a href="/uncomplete/{{ .Id}}"><button
+                                            class="btn btn-outline-primary">UnComplete</button></a>
+                                    <button class="btn btn-outline-warning" disabled>Update</button>
+                                    <button class="btn btn-outline-danger" disabled>Delete</button>
+                                </td>
+                            </tr>
+                            {{else}}
+                            <tr>
+                                <td>{{.Item}}</td>
+                                <td class="text-center">{{.Person}}</td>
+                                <td class="text-center">{{.Date}}</td>
+                                <td class="text-center">Not Completed</td>
+                                <td class="text-center" style="width: 350px;">
+                                    <a href="/complete/{{ .Id}}"><button class="btn btn-outline-primary">Complete</button></a>
+                                    <a href="/update/{{ .Id}}"><button class="btn btn-outline-warning">Update</button></a>
+                                    <a href="/delete/{{ .Id}}"><button class="btn btn-outline-danger">Delete</button></a>
+                                </td>
+                            </tr>
+                            {{end}}
+                            {{end}}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
@@ -112,4 +224,13 @@
         height: 55% !important;
     }
 </style>
+<script>
+    $(window).on("load resize ", function () {
+        var scrollWidth = $('.tbl-content').width() - $('.tbl-content table').width();
+        $('.tbl-header').css({
+            'padding-right': scrollWidth
+        });
+    }).resize();
+</script>
+
 </html>
