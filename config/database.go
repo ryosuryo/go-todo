@@ -4,11 +4,12 @@ import (
 	"database/sql"
 	"errors"
 	"fmt"
+	"log"
+	"os"
+
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/ichtrojan/thoth"
 	_ "github.com/joho/godotenv/autoload"
-	"log"
-	"os"
 )
 
 func Database() *sql.DB {
@@ -63,6 +64,7 @@ func Database() *sql.DB {
 		    id INT AUTO_INCREMENT,
 		    item TEXT NOT NULL,
 		    completed BOOLEAN DEFAULT FALSE,
+		    person TEXT NOT NULL,
 		    PRIMARY KEY (id)
 		);
 	`)

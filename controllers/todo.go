@@ -2,17 +2,19 @@ package controllers
 
 import (
 	"fmt"
+	"html/template"
+	"net/http"
+
 	"github.com/gorilla/mux"
 	"github.com/ichtrojan/go-todo/config"
 	"github.com/ichtrojan/go-todo/models"
-	"html/template"
-	"net/http"
 )
 
 var (
 	id        int
 	item      string
 	completed int
+	person    string
 	view      = template.Must(template.ParseFiles("./views/index.html"))
 	database  = config.Database()
 )
@@ -27,7 +29,7 @@ func Show(w http.ResponseWriter, r *http.Request) {
 	var todos []models.Todo
 
 	for statement.Next() {
-		err = statement.Scan(&id, &item, &completed)
+		err = statement.Scan(&id, &item, &completed, &person)
 
 		if err != nil {
 			fmt.Println(err)
@@ -37,6 +39,7 @@ func Show(w http.ResponseWriter, r *http.Request) {
 			Id:        id,
 			Item:      item,
 			Completed: completed,
+			Person:    person,
 		}
 
 		todos = append(todos, todo)
@@ -52,8 +55,9 @@ func Show(w http.ResponseWriter, r *http.Request) {
 func Add(w http.ResponseWriter, r *http.Request) {
 
 	item := r.FormValue("item")
+	person := r.FormValue("person")
 
-	_, err := database.Exec(`INSERT INTO todos (item) VALUE (?)`, item)
+	_, err := database.Exec(`INSERT INTO todos (item,person) VALUE (?,?)`, item, person)
 
 	if err != nil {
 		fmt.Println(err)

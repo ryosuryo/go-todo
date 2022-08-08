@@ -19,6 +19,11 @@
                         <input type="text" class="form-control" name="item" placeholder="What do you want to do?">
                         <small class="form-text text-muted">Enter what you want to procastinate 🙂</small>
                     </div>
+                    <div class="form-group">
+                        <label for="Person">Person</label>
+                        <input type="text" class="form-control" name="person" placeholder="For Who?">
+                        <small class="form-text text-muted">Enter who you want to procastinate 🙂</small>
+                    </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
             </div>
@@ -34,6 +39,7 @@
                     <thead>
                     <tr>
                         <th scope="col">Item</th>
+                        <th scope="col">Person</th>
                         <th scope="col">Status</th>
                         <th scope="col">Action</th>
                     </tr>
@@ -43,6 +49,7 @@
                         {{if .Completed}}
                             <tr>
                                 <td><strike>{{.Item}}</strike></td>
+                                <td><strike>{{.Person}}</strike></td>
                                 <td>Completed</td>
                                 <td>
                                     <button class="btn btn-primary" disabled>Complete</button>
@@ -52,6 +59,7 @@
                         {{else}}
                             <tr>
                                 <td>{{.Item}}</td>
+                                <td>{{.Person}}</td>
                                 <td>Not Completed</td>
                                 <td>
                                     <a href="/complete/{{ .Id}}"><button class="btn btn-primary">Complete</button></a>
