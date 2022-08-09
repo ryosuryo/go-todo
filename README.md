@@ -1,5 +1,4 @@
 # Go Todo
-
 ![hero](https://res.cloudinary.com/ichtrojan/image/upload/v1574958373/Screenshot_2019-11-28_at_17.22.25_gyegdr.png)
 
 ## Introduction
@@ -40,7 +39,7 @@ To run this application, execute:
 go run main.go
 ```
 
-You should be able to access this application at `http://127.0.0.1:4040`
+You should be able to access this application at `http://127.0.0.1:6060`
 
 >**NOTE**<br>
 >If you modified the port in the `.env` file, you should access the application for the port you set

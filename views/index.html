@@ -11,6 +11,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <title>Todo</title>
     <style>
         h1 {
@@ -69,7 +71,8 @@
             background: -webkit-linear-gradient(left, #25c481, #25b7c4) !important;
             background: linear-gradient(to right, #25c481, #25b7c4) !important;
             /* font-family: 'Roboto', sans-serif !important; */
-            font-family: 'Mulish';font-size: 22px;
+            font-family: 'Mulish';
+            font-size: 22px;
 
         }
 
@@ -120,6 +123,54 @@
         ::-webkit-scrollbar-thumb {
             -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3) !important;
         }
+
+        .modal a.close-modal {
+            background-image: none !important;
+        }
+
+        .fa {
+            padding: 8px;
+            font-size: 24px;
+            width: 41px;
+            text-align: center;
+            text-decoration: none;
+            margin: 8px;
+            border-radius: 35%;
+        }
+
+        .fa:hover {
+            opacity: 0.7;
+        }
+
+        .fa-facebook {
+            background: #3B5998;
+            color: white;
+        }
+
+        .fa-twitter {
+            background: #55ACEE;
+            color: white;
+        }
+
+        .fa-google {
+            background: #dd4b39;
+            color: white;
+        }
+
+        .fa-linkedin {
+            background: #007bb5;
+            color: white;
+        }
+
+        .fa-youtube {
+            background: #bb0000;
+            color: white;
+        }
+
+        .fa-instagram {
+            background: #125688;
+            color: white;
+        }
     </style>
 </head>
 
@@ -132,7 +183,7 @@
 
 
     <!-- Modal HTML embedded directly into document -->
-    <div id="ex1" class="modal">
+    <div id="ex1" class="modal" style="background: -webkit-linear-gradient(left, #6bcfa5, #88d2d9) !important;">
         <!-- <div class="card-header">Add a task</div> -->
         <form action="/add" method="post">
             <div class="form-group">
@@ -163,7 +214,8 @@
     &nbsp;
     &nbsp;
     <div class="d-flex justify-content-center">
-        <p><a href="#ex1" class="btn btn-outline-primary" rel="modal:open">Add New Task</a></p>
+        <p><a href="#ex1" class="btn btn-outline-primary" rel="modal:open" onclick="$('.close-modal').remove()">Add New
+                Task</a></p>
     </div>
     <div class="container">
         <div class="">
@@ -205,9 +257,12 @@
                                 <td class="text-center">{{.Date}}</td>
                                 <td class="text-center">Not Completed</td>
                                 <td class="text-center" style="width: 350px;">
-                                    <a href="/complete/{{ .Id}}"><button class="btn btn-outline-primary">Complete</button></a>
-                                    <a href="/update/{{ .Id}}"><button class="btn btn-outline-warning">Update</button></a>
-                                    <a href="/delete/{{ .Id}}"><button class="btn btn-outline-danger">Delete</button></a>
+                                    <a href="/complete/{{ .Id}}"><button
+                                            class="btn btn-outline-primary">Complete</button></a>
+                                    <a href="/update/{{ .Id}}"><button
+                                            class="btn btn-outline-warning">Update</button></a>
+                                    <a href="/delete/{{ .Id}}"><button
+                                            class="btn btn-outline-danger">Delete</button></a>
                                 </td>
                             </tr>
                             {{end}}
@@ -217,6 +272,12 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div class="d-flex justify-content-center">
+        <a href="https://www.facebook.com/ryosuryo0" target="_blank" class="fa fa-facebook"></a>
+        <a href="https://twitter.com/ryo_suryo" target="_blank" class="fa fa-twitter"></a>
+        <a href="https://www.linkedin.com/in/damarss/" target="_blank" class="fa fa-linkedin"></a>
+        <a href="https://www.instagram.com/ryo_suryo/" target="_blank" class="fa fa-instagram"></a>
     </div>
 </body>
 <style>
