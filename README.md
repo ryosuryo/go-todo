@@ -11,10 +11,13 @@ A simple todolist application written in Go
 
 ## Installation
 
+* This repo is fork from repo:
+git clone https://github.com/ichtrojan/go-todo.git
+
 * Clone this repo 
 
 ```bash
-git clone https://github.com/ichtrojan/go-todo.git
+git clone https://github.com/ryosuryo/go-todo.git
 ```
 
 * Change Directory
@@ -49,6 +52,5 @@ You should be able to access this application at `http://127.0.0.1:6060`
 This Project is an example to teach CRUD using the default `database/sql` package and how to serve html templates properly.
 
 If you have anything to add to this, please send in a PR as it will no longer be actively maintained by [me](https://github.com/ichtrojan).
-
 
 Live Preview : http://godamar.ioiapps.com/
