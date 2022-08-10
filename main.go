@@ -2,15 +2,19 @@ package main
 
 import (
 	"errors"
-	"github.com/ichtrojan/go-todo/routes"
-	"github.com/ichtrojan/thoth"
-	"github.com/joho/godotenv"
 	"log"
 	"net/http"
 	"os"
+
+	"github.com/ichtrojan/go-todo/routes"
+	"github.com/ichtrojan/thoth"
+	"github.com/joho/godotenv"
 )
 
 func main() {
+	/* Variable untuk logging errors
+	 * untuk file log akan disimpan di logs/error.log
+	 */
 	logger, _ := thoth.Init("log")
 
 	if err := godotenv.Load(); err != nil {
@@ -25,6 +29,7 @@ func main() {
 		log.Fatal("PORT not set in .env")
 	}
 
+	// Fungsi ini untuk membuka http server dengan port yang ada di file .env
 	err := http.ListenAndServe(":"+port, routes.Init())
 
 	if err != nil {

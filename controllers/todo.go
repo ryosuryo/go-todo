@@ -16,10 +16,12 @@ var (
 	completed int
 	person    string
 	date      string
-	view      = template.Must(template.ParseFiles("./views/index.html"))
-	edit      = template.Must(template.ParseFiles("./views/edit.html"))
-	database  = config.Database()
+	view      = template.Must(template.ParseFiles("./views/index.html")) // template menggunakan html template
+	edit      = template.Must(template.ParseFiles("./views/edit.html"))  // template menggunakan html template
+	database  = config.Database()                                        // database configuration from config/database.go
 )
+
+/* Fungsi-fungsi yang ada disini diakses oleh web.go untuk ditampilkan ke dalam web browser. */
 
 func Show(w http.ResponseWriter, r *http.Request) {
 	statement, err := database.Query(`SELECT * FROM todos`)
