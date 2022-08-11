@@ -54,3 +54,4 @@ This Project is an example to teach CRUD using the default `database/sql` packag
 If you have anything to add to this, please send in a PR as it will no longer be actively maintained by [me](https://github.com/ichtrojan).
 
 Live Preview : http://godamar.ioiapps.com/
+If the live preview site can't access fell free to contact me from [WhatsApp](https://api.whatsapp.com/send/?phone=6285799990062&text&type=phone_number&app_absent=0)
